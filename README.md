@@ -1,5 +1,5 @@
 # Object-Oriented-Programming-Topic-Selection-System
-## ==zjut大一c++课设 选题编号13==
+## zjut大一上c++课设 选题编号13
 基本要求：
 以班级为单位进行选题，题目信息以文件形式存放，包括：编号、题目、任务要求、完成时间等。
 功能要求：
