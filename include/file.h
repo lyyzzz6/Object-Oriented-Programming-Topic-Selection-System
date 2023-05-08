@@ -62,7 +62,7 @@ void File::init(TList<T>& list) {
         out.close();
         in.open(path + classes + filetype, std::ios::in);
     }
-    while(!in.eof()) {
+    while(in.peek()!=EOF&&!in.eof()) {
         list.AddNode(in);
     }
     in.close();

@@ -9,7 +9,7 @@
 
 namespace fs = std::filesystem;
 
-void loadstudent1(TList<Student> stu){
+void loadstudent(TList<Student> stu){
     fs::path test_file("../data/student");
     int x=1;
     fs::path temp=test_file;
@@ -190,8 +190,8 @@ int main() {
                                             }
                                         }
                                         temp->SetAddress(stu);
-                                        stuList.DeleteNode(stuindex);
                                         stuList.AddNode(temp, stuindex - 1);
+                                        stuList.DeleteNode(stuindex+1);
                                         break;
                                     }
                                     case 4: {
@@ -406,7 +406,7 @@ int main() {
                 loadTopic(topicList,classid);
                 int index = menu::loginstudent(stuList);
                 if(index == 0) break;
-                if (index != 0) std::cout << "登陆成功！" << std::endl;
+                if (index != 0) std::cout << stuList[index].GetAddress().GetName() << "登陆成功！" << std::endl;
                 int operationtype = menu::displaystumenu();
                 bool ex1 = false;
                 while(!ex1){
