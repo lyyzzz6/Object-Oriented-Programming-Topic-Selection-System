@@ -49,6 +49,8 @@ public:
     int GetChangeNum() const;
 
     int GetTopicId() const;
+
+    void SetChangeNum(int i);
 };
 
 #endif //C__CLASSDESIGN_STUDENT_H

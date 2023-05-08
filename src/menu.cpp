@@ -39,7 +39,7 @@ int menu::loginteacher(TList<Teacher> tea) {
     int size = tea.GetSize();
     int index;
     bool found = false;
-    for (int i = 0; i < size; ++i) {
+    for (int i = 1; i <= size; ++i) {
         if(tea[i].GetAddress().Getid()==count){
             index = i;
             found = true;
@@ -156,7 +156,7 @@ int menu::loginstudent(TList<Student> stu) {
     int size = stu.GetSize();
     int index;
     bool found = false;
-    for (int i = 0; i < size; ++i) {
+    for (int i = 1; i <= size; ++i) {
         if(stu[i].GetAddress().GetId()==count){
             index = i;
             found = true;
