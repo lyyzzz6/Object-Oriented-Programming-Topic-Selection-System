@@ -15,8 +15,6 @@ public:
 
     static int displaystumenu();
 
-    void displaylogin();
-
     static int displaywelcome();
 
     static int loginteacher(TList<Teacher> tea);

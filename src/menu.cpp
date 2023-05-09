@@ -5,11 +5,6 @@
 #include "../include/menu.h"
 #include "../include/Teacher.h"
 
-void menu::displaylogin() {
-    std::cout << "请输入账号" << std::endl;
-    
-}
-
 int menu::displaywelcome() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "欢迎使用面向对象程序设计选题系统" << std::endl;
@@ -18,9 +13,9 @@ int menu::displaywelcome() {
     std::cout << "2: 学生" << std::endl;
     std::cout << "3: 退出" << std::endl;
     std::cout << ">";
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3) return type;
+        if(type=="1"||type=="2"||type=="3") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -66,9 +61,9 @@ int menu::displayteamenu() {
     std::cout << "2: 关于题目操作" << std::endl;
     std::cout << "3: 关于学生和题目匹配" << std::endl;
     std::cout << "4: 退出" << std::endl;
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3||type==4) return type;
+        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -85,9 +80,9 @@ int menu::stu2topic_Teacher() {
     std::cout << "4: 展示所有学生" << std::endl;
     std::cout << "5: 设置学生默认密码" << std::endl;
     std::cout << "6: 退出" << std::endl;
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3||type==4||type==5||type==6) return type;
+        if(type=="1"||type=="2"||type=="3"||type=="4"||type=="5"||type=="6") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -103,9 +98,9 @@ int menu::menu2stu_Teacher() {
     std::cout << "3: 修改题目数据" << std::endl;
     std::cout << "4: 展示所有题目" << std::endl;
     std::cout << "5: 退出" << std::endl;
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3||type==4||type==5) return type;
+        if(type=="1"||type=="2"||type=="3"||type=="4"||type=="5") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -119,9 +114,9 @@ int menu::match_Teacher() {
     std::cout << "1: 为学生分配题目" << std::endl;
     std::cout << "2: 为题目分配学生" << std::endl;
     std::cout << "3: 退出" << std::endl;
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3) return type;
+        if(type=="1"||type=="2"||type=="3") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -136,9 +131,9 @@ int menu::displaystumenu() {
     std::cout << "2: 修改密码" << std::endl;
     std::cout << "3: 查看已选择题目" << std::endl;
     std::cout << "4: 退出" << std::endl;
-    int type;
+    std::string type;
     while(std::cin >> type) {
-        if(type==1||type==2||type==3||type==4) return type;
+        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
