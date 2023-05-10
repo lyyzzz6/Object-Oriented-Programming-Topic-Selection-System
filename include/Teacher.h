@@ -30,5 +30,9 @@ public:
     friend std::istream& operator>> (std::istream& in, Teacher& x);
 
     friend std::ostream& operator<< (std::ostream& out, Teacher& x);
+
+    void SetPassword(std::string psw);
+
+    void SetId(std::string i);
 };
 #endif //C__CLASSDESIGN_TEACHER_H

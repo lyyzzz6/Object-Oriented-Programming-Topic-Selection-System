@@ -9,7 +9,7 @@
 
 namespace fs = std::filesystem;
 
-void LoadStudentMultiplyFile(TList<Student> stu){
+[[maybe_unused]] void MultiplyFile(TList<Student> stu){
     fs::path test_file("../data/student");
     int x=1;
     fs::path temp=test_file;
@@ -53,6 +53,11 @@ void LoadTopic(TList<Topic>&topic, int c){
 void SaveTopic(TList<Topic>&topic, int c){
     File file("../data/topic",std::to_string(c),".txt");
     file.Change(topic);
+}
+
+void SaveTeacher(TList<Teacher>&tea){
+    File file("../data/teacher","1",".txt");
+    file.Change(tea);
 }
 
 void TestList(){
@@ -415,6 +420,19 @@ int main() {
                             break;
                         }
                         case 4:{
+                            std::cout << "请输入原密码" << std::endl;
+                            std::string psw;std::cin >> psw;
+                            if(psw==TeaList[index].GetAddress().GetPassword()){
+                                std::cout << "请输入新密码" << std::endl;std::cin >> psw;
+                                TeaList[index].GetAddress().SetPassword(psw);
+                                std::cout << "修改成功" << std::endl;
+                            }else{
+                                std::cout << "原密码错误" << std::endl;
+                                break;
+                            }
+                            break;
+                        }
+                        case 5:{
                             ex1 = true;
                             break;
                         }
@@ -455,7 +473,9 @@ int main() {
                                 }
                                 std::default_random_engine e;
                                 std::uniform_int_distribution<unsigned> u(1, topicList.GetSize());
-                                int num = 0;int ed[3]={0};bool empty = true;
+                                int num = 0;
+                                int ed[3]={0};
+                                bool empty = true;
                                 for (int i = 1; i <= topicList.GetSize(); ++i) {
                                     if(topicList[i].GetAddress().GetStudentId()=="0"){
                                         empty = false;
@@ -480,7 +500,9 @@ int main() {
                                         }
                                     }
                                 }
-                                std::cout << "请输入你要选择的题目编号 若都不想要 请输入-1"<< std::endl;int TopicId;std::cin >> TopicId;
+                                std::cout << "请输入你要选择的题目编号 若都不想要 请输入-1"<< std::endl;
+                                int TopicId;
+                                std::cin >> TopicId;
                                 while(TopicId != -1 && (TopicId != ed[0] && ed[0] != 0) && (TopicId != ed[1] && ed[1] != 0) && (TopicId != ed[2] && ed[2] != 0)){
                                     std::cout << "输入错误 请重新输入";std::cin >> TopicId;
                                 }
@@ -520,7 +542,8 @@ int main() {
                             break;
                         }
                         case 3:{
-                            int TopicId = stuList[index].GetAddress().GetTopicId();int TopicIndex;
+                            int TopicId = stuList[index].GetAddress().GetTopicId();
+                            int TopicIndex;
                             if(TopicId == 0){
                                 std::cout << "您还未选择题目" << std::endl;
                                 break;
@@ -552,6 +575,52 @@ int main() {
                 break;
             }
             case 3:{
+                bool Status = menu::LoginAdmin();
+                if(!Status) break;
+                if(Status) std::cout << "管理员登录成功!" << std::endl;
+                int OperationType = menu::DisplayAdminMenu();
+                bool ex1 = false;
+                while(!ex1){
+                    switch(OperationType){
+                        case 1:{
+                            Teacher tea;
+                            std::cin >> tea;
+                            auto *temp = new ListNode<Teacher>;
+                            temp->SetAddress(tea);
+                            TeaList.AddNode(temp);
+                            break;
+                        }
+                        case 2:{
+                            std::cout << "请输入你想修改的教师账号: " << std::endl;
+                            std::string TeaId;std::cin >> TeaId;
+                            for (int i = 1; i <= TeaList.GetSize(); ++i) {
+                                if(TeaList[i].GetAddress().GetId()==TeaId){
+                                    std::cout << "请输入新账号: " << std::endl;
+                                    std::string Id;std::cin >> Id;
+                                    TeaList[i].GetAddress().SetId(Id);
+                                    std::cout << "请输入新密码: " << std::endl;
+                                    std::string psw;std::cin >> psw;
+                                    TeaList[i].GetAddress().SetPassword(psw);
+                                }
+                            }
+                            break;
+                        }
+                        case 3:{
+                            TeaList.Display();
+                            break;
+                        }
+                        case 4:{
+                            ex1 = true;
+                            break;
+                        }
+                        default:;
+                    }
+                    if(!ex1) OperationType =menu::DisplayAdminMenu();
+                    SaveTeacher(TeaList);
+                }
+                break;
+            }
+            case 4:{
                 ex0 = true;
             }
             default:;

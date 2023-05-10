@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../include/menu.h"
 #include "../include/Teacher.h"
+#include "../include/admin.h"
 
 int menu::DisplayWelcome() {
     std::cout << "--------------------------------" << std::endl;
@@ -11,11 +12,12 @@ int menu::DisplayWelcome() {
     std::cout << "请选择登录身份" << std::endl;
     std::cout << "1: 教师" << std::endl;
     std::cout << "2: 学生" << std::endl;
-    std::cout << "3: 退出" << std::endl;
+    std::cout << "3: 管理员" << std::endl;
+    std::cout << "4: 退出" << std::endl;
     std::cout << ">";
     std::string type;
     while(std::cin >> type) {
-        if(type=="1"||type=="2"||type=="3") return std::stoi(type);
+        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -54,16 +56,37 @@ int menu::LoginTeacher(TList<Teacher> tea) {
     }
 }
 
+bool menu::LoginAdmin(){
+    std::cout << "请输入账号" << std::endl;
+    std::string account;
+    std::cin >> account;
+    std::string psw;
+    std::cout << "请输入密码" << std::endl;
+    std::cin >> psw;
+    if(account == AdminAccount){
+        if(psw == AdminPassword){
+            return true;
+        }else{
+            std::cout << "密码错误 请重新操作" << std::endl;
+            return false;
+        }
+    }else {
+        std::cout << "账号错误 请重新操作" << std::endl;
+        return false;
+    }
+}
+
 int menu::DisplayTeaMenu() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 关于学生操作" << std::endl;
     std::cout << "2: 关于题目操作" << std::endl;
     std::cout << "3: 关于学生和题目匹配" << std::endl;
-    std::cout << "4: 退出" << std::endl;
+    std::cout << "4: 修改密码" << std::endl;
+    std::cout << "5: 退出" << std::endl;
     std::string type;
     while(std::cin >> type) {
-        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
+        if(type=="1"||type=="2"||type=="3"||type=="4"||type=="5") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
@@ -169,5 +192,22 @@ int menu::LoginStudent(TList<Student> stu) {
     }else {
         std::cout << "账号错误 请重新操作" << std::endl;
         return 0;
+    }
+}
+
+int menu::DisplayAdminMenu() {
+    std::cout << "--------------------------------" << std::endl;
+    std::cout << "请选择您要执行的操作" << std::endl;
+    std::cout << "1: 增加老师" << std::endl;
+    std::cout << "2: 修改老师数据" << std::endl;
+    std::cout << "3: 展示所有老师" << std::endl;
+    std::cout << "4: 退出" << std::endl;
+    std::string type;
+    while(std::cin >> type) {
+        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
+        else{
+            std::cout << "输入有误，请重新输入" << std::endl;
+            std::cout << ">";
+        }
     }
 }

@@ -34,7 +34,7 @@ public:
 
     friend std::istream& operator>> (std::istream& in, Topic& x);
 
-    void SetStuId(std::string stuid);
+    void SetStuId(std::string StuId);
 
     std::string GetStudentId();
 

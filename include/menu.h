@@ -26,6 +26,10 @@ public:
     static int Match_Teacher();
 
     static int LoginStudent(TList<Student> list);
+
+    static bool LoginAdmin();
+
+    static int DisplayAdminMenu();
 };
 
 #endif //C__CLASSDESIGN_MENU_H

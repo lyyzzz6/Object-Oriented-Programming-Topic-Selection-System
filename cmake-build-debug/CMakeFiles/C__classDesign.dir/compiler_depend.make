@@ -801,7 +801,8 @@ CMakeFiles/C__classDesign.dir/src/menu.cpp.obj: D:/C++classDesign/Object-Oriente
   D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Topic.h \
   D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/student.h \
   D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/listnode.h \
-  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Teacher.h
+  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Teacher.h \
+  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/admin.h
 
 
 D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/main.cpp:
@@ -1011,6 +1012,8 @@ D:/JetBrains/apps/CLion/ch-0/231.8109.222/bin/mingw/lib/gcc/x86_64-w64-mingw32/1
 D:/JetBrains/apps/CLion/ch-0/231.8109.222/bin/mingw/x86_64-w64-mingw32/include/time.h:
 
 D:/JetBrains/apps/CLion/ch-0/231.8109.222/bin/mingw/x86_64-w64-mingw32/include/sys/timeb.h:
+
+D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/admin.h:
 
 D:/JetBrains/apps/CLion/ch-0/231.8109.222/bin/mingw/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
 

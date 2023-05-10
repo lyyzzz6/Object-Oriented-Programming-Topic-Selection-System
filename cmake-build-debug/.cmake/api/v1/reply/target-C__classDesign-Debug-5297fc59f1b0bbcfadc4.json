@@ -110,7 +110,8 @@
 				8,
 				9,
 				10,
-				11
+				11,
+				12
 			]
 		}
 	],
@@ -179,6 +180,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/file.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/admin.h",
 			"sourceGroupIndex" : 1
 		}
 	],

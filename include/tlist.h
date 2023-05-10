@@ -15,7 +15,7 @@ protected:
     ListNode<T>* tail;
 public:
     TList();
-    //插在某个结点之后
+
     void AddNode(ListNode<T>*, int);
 
     void AddNode(std::istream& in);
@@ -35,18 +35,18 @@ public:
 
 template<typename T>
 void TList<T>::AddNode(std::istream &in) {
-    auto newnode = new ListNode<T>;
-    T newdata;
-    in >> newdata;
-    newnode->SetAddress(newdata);
+    auto NewNode = new ListNode<T>;
+    T NewData;
+    in >> NewData;
+    NewNode->SetAddress(NewData);
     if(size==0){
-        newnode->SetPrev(head);
-        head->SetNext(newnode);
-        tail = newnode;
+        NewNode->SetPrev(head);
+        head->SetNext(NewNode);
+        tail = NewNode;
     }else{
-        newnode->SetPrev(tail);
-        tail->SetNext(newnode);
-        tail = newnode;
+        NewNode->SetPrev(tail);
+        tail->SetNext(NewNode);
+        tail = NewNode;
     }
     size++;
 }
@@ -133,7 +133,6 @@ ListNode<T>* TList<T>::GetHead() {
 template<typename T>
 ListNode<T>& TList<T>::operator[](int index) {
     if(index>size+1){
-//        std::cout << "index: " << index << " size: " << size << std::endl;
         std::cout << "参数错误 超过链表最大长度" << std::endl;
         return *tail;
     }

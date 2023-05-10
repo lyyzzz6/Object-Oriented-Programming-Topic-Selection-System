@@ -88,6 +88,9 @@
 		<Unit filename="D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Topic.h">
 			<Option target="C__classDesign"/>
 		</Unit>
+		<Unit filename="D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/admin.h">
+			<Option target="C__classDesign"/>
+		</Unit>
 		<Unit filename="D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/file.h">
 			<Option target="C__classDesign"/>
 		</Unit>

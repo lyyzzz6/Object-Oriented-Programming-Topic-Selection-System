@@ -60,8 +60,8 @@ std::ostream &operator<<(std::ostream& out, Topic &x) {
     }
 }
 
-void Topic::SetStuId(std::string s) {
-    StudentId = s;
+void Topic::SetStuId(std::string StuId) {
+    StudentId = StuId;
 }
 
 std::string Topic::GetStudentId() {
