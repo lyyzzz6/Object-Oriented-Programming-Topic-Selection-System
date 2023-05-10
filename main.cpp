@@ -9,7 +9,7 @@
 
 namespace fs = std::filesystem;
 
-void LoadStudentMutiplyFile(TList<Student> stu){
+void LoadStudentMultiplyFile(TList<Student> stu){
     fs::path test_file("../data/student");
     int x=1;
     fs::path temp=test_file;
@@ -24,6 +24,16 @@ void LoadStudentMutiplyFile(TList<Student> stu){
         temp+=".txt";
     }
 }
+
+std::string CheckStuList(TList<Student> list) {
+    for (int i = 1; i <= list.GetSize(); ++i) {
+        if(list[i].GetAddress().GetTopicId()==0){
+            return list[i].GetAddress().GetId();
+        }
+    }
+    return "Empty";
+}
+
 
 void LoadStudent(TList<Student>&stu, int c){
     File file("../data/student",std::to_string(c),".txt");
@@ -376,6 +386,23 @@ int main() {
                                         break;
                                     }
                                     case 3:{
+                                        std::cout << "请注意: 以下将随机将未被选择的题目分配给未选择的学生(*题目数量少于学生时 将会有学生未被分配到题目)" << std::endl;
+                                        for (int i = 1; i <= TopicList.GetSize(); ++i) {
+                                            if(TopicList[i].GetAddress().GetStudentId()=="0"&&CheckStuList(StuList)!="Empty"){
+                                                std::string StuId = CheckStuList(StuList);
+                                                TopicList[i].GetAddress().SetStuId(StuId);
+                                                for (int j = 1; j <= StuList.GetSize(); ++j) {
+                                                    if(StuList[j].GetAddress().GetId()==StuId){
+                                                        StuList[j].GetAddress().SetTopicId(TopicList[i].GetAddress().GetId());
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        std::cout << "分配成功!" << std::endl;
+                                        break;
+                                    }
+                                    case 4:{
                                         ex2 = true;
                                         break;
                                     }

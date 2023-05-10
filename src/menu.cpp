@@ -113,10 +113,11 @@ int menu::Match_Teacher() {
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 为学生分配题目" << std::endl;
     std::cout << "2: 为题目分配学生" << std::endl;
-    std::cout << "3: 退出" << std::endl;
+    std::cout << "3: 自动分配题目给学生" << std::endl;
+    std::cout << "4: 退出" << std::endl;
     std::string type;
     while(std::cin >> type) {
-        if(type=="1"||type=="2"||type=="3") return std::stoi(type);
+        if(type=="1"||type=="2"||type=="3"||type=="4") return std::stoi(type);
         else{
             std::cout << "输入有误，请重新输入" << std::endl;
             std::cout << ">";
