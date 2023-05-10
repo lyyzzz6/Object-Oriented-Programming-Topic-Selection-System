@@ -9,7 +9,7 @@
 
 namespace fs = std::filesystem;
 
-void loadstudent(TList<Student> stu){
+void LoadStudentMutiplyFile(TList<Student> stu){
     fs::path test_file("../data/student");
     int x=1;
     fs::path temp=test_file;
@@ -17,7 +17,7 @@ void loadstudent(TList<Student> stu){
     temp+=".txt";
     while(fs::exists(temp)){
         File file("../data/student",std::to_string(x),".txt");
-        file.init(stu);
+        file.Init(stu);
         temp=test_file;
         x++;
         temp+=std::to_string(x);
@@ -25,27 +25,27 @@ void loadstudent(TList<Student> stu){
     }
 }
 
-void loadstudent(TList<Student>&stu, int c){
+void LoadStudent(TList<Student>&stu, int c){
     File file("../data/student",std::to_string(c),".txt");
-    file.init(stu);
+    file.Init(stu);
 }
 
-void savestudent(TList<Student>&stu, int c){
+void SaveStudent(TList<Student>&stu, int c){
     File file("../data/student",std::to_string(c),".txt");\
-    file.change(stu);
+    file.Change(stu);
 }
 
-void loadTopic(TList<Topic>&topic, int c){
+void LoadTopic(TList<Topic>&topic, int c){
     File file("../data/topic",std::to_string(c),".txt");
-    file.init(topic);
+    file.Init(topic);
 }
 
-void saveTopic(TList<Topic>&topic, int c){
+void SaveTopic(TList<Topic>&topic, int c){
     File file("../data/topic",std::to_string(c),".txt");
-    file.change(topic);
+    file.Change(topic);
 }
 
-void testlist(){
+void TestList(){
     TList<Student> stu;
     Student s1("lyz","2","1",2);
     Student s2("lyz1","1","2",2);
@@ -57,13 +57,13 @@ void testlist(){
     stu1->SetAddress(s1);
     //测试有参 加节点
     stu.AddNode(stu1,1);
-    stu.display();
+    stu.Display();
     //测试删除尾节点
     stu.DeleteNode(2);
-    stu.display();
+    stu.Display();
 }
 
-void testdirectory(){
+void TestDirectory(){
     TList<Teacher> tea;
     fs::path test_file("../data/teacher");
     int x=1;
@@ -72,137 +72,137 @@ void testdirectory(){
     temp+=".txt";
     while(fs::exists(temp)){
         File file("../data/teacher",std::to_string(x),".txt");
-        file.init(tea);
+        file.Init(tea);
         temp=test_file;
         x++;
         temp+=std::to_string(x);
         temp+=".txt";
     }
-    tea.display();
+    tea.Display();
 
 }
 
-void testfile(){
+void TestFile(){
     File file("../data/teacher","1",".txt");
     TList<Teacher> tea;
-    file.init(tea);
+    file.Init(tea);
     auto *t = new ListNode<Teacher>;
     Teacher t1("123","123123",5);
     t->SetAddress(t1);
     tea.AddNode(t);
-    file.change(tea);
-    tea.display();
+    file.Change(tea);
+    tea.Display();
 }
 
 int main() {
     menu menu;
-    int usertype = menu::displaywelcome();
-    TList<Teacher> teachers;
+    int usertype = menu::DisplayWelcome();
+    TList<Teacher> TeaList;
     File file("../data/teacher", "1", ".txt");
-    file.init(teachers);
+    file.Init(TeaList);
     bool ex0 = false;
     while (!ex0) {
         switch (usertype) {
             case 1: {
-                int index = menu::loginteacher(teachers);
+                int index = menu::LoginTeacher(TeaList);
                 if(index == 0) break;
                 if (index != 0) std::cout << "登陆成功！" << std::endl;
-                TList<Student> stuList;
-                loadstudent(stuList, teachers[index].GetAddress().GetClass());
-                TList<Topic> topicList;
-                loadTopic(topicList, teachers[index].GetAddress().GetClass());
-                int operationtype = menu::displayteamenu();
+                TList<Student> StuList;
+                LoadStudent(StuList, TeaList[index].GetAddress().GetClass());
+                TList<Topic> TopicList;
+                LoadTopic(TopicList, TeaList[index].GetAddress().GetClass());
+                int OperationType = menu::DisplayTeaMenu();
                 bool ex1 = false;
                 while(!ex1){
-                    switch (operationtype) {
+                    switch (OperationType) {
                         case 1: {
-                            int stu_opration_Teacher = menu::stu2topic_Teacher();
+                            int StuOperation_Teacher = menu::Stu2Topic_Teacher();
                             bool ex2= false;
                             while(!ex2){
-                                switch (stu_opration_Teacher) {
+                                switch (StuOperation_Teacher) {
                                     case 1: {
                                         Student stu;
-                                        stu.SetClass(teachers[index].GetAddress().GetClass());
+                                        stu.SetClass(TeaList[index].GetAddress().GetClass());
                                         std::cin >> stu;
                                         auto *temp = new ListNode<Student>;
                                         temp->SetAddress(stu);
-                                        stuList.AddNode(temp);
+                                        StuList.AddNode(temp);
                                         break;
                                     }
                                     case 2: {
-                                        std::string stuid;
+                                        std::string StuId;
                                         std::cout << "请输入想删除学生账号" << std::endl;
-                                        std::cin >> stuid;
-                                        int stuindex = 0;
-                                        for (int i = 1; i <= stuList.GetSize(); ++i) {
-                                            if(stuList[i].GetAddress().GetId()==stuid) {
-                                                stuindex = i;
+                                        std::cin >> StuId;
+                                        int StuIndex = 0;
+                                        for (int i = 1; i <= StuList.GetSize(); ++i) {
+                                            if(StuList[i].GetAddress().GetId() == StuId) {
+                                                StuIndex = i;
                                                 break;
                                             }
                                         }
-                                        if(stuindex==0) {
+                                        if(StuIndex == 0) {
                                             std::cout << "账号不存在！" << std::endl;
                                             break;
                                         }
-                                        if(stuList[stuindex].GetAddress().GetTopicId()!=0){
+                                        if(StuList[StuIndex].GetAddress().GetTopicId() != 0){
                                             std::cout << "该学生已选择题目，需要取消和题目之间的关联才能删除，请问是否取消关联？[y/n]" << std::endl;
                                             std::string answer;std::cin >> answer;
                                             if(answer=="n") break;
-                                            int topicid = stuList[stuindex].GetAddress().GetTopicId();
-                                            for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                                if(topicList[i].GetAddress().GetId()==topicid) {
-                                                    topicList[i].GetAddress().SetStuId("0");
+                                            int TopicId = StuList[StuIndex].GetAddress().GetTopicId();
+                                            for (int i = 1; i <= TopicList.GetSize(); ++i) {
+                                                if(TopicList[i].GetAddress().GetId() == TopicId) {
+                                                    TopicList[i].GetAddress().SetStuId("0");
                                                     break;
                                                 }
                                             }
                                         }
-                                        stuList.DeleteNode(stuindex);
+                                        StuList.DeleteNode(StuIndex);
                                         break;
                                     }
                                     case 3: {
-                                        std::string stuid;
+                                        std::string StuId;
                                         std::cout << "请输入想修改学生账号" << std::endl;
-                                        std::cin >> stuid;
-                                        int stuindex = 0;
-                                        for (int i = 1; i <= stuList.GetSize(); ++i) {
-                                            if(stuList[i].GetAddress().GetId()==stuid) {
-                                                stuindex = i;
+                                        std::cin >> StuId;
+                                        int StuIndex = 0;
+                                        for (int i = 1; i <= StuList.GetSize(); ++i) {
+                                            if(StuList[i].GetAddress().GetId() == StuId) {
+                                                StuIndex = i;
                                                 break;
                                             }
                                         }
-                                        if(stuindex==0) {
+                                        if(StuIndex == 0) {
                                             std::cout << "账号不存在！" << std::endl;
                                             break;
                                         }
                                         Student stu;
                                         std::cin >> stu;
-                                        stu.SetClass(teachers[index].GetAddress().GetClass());
-                                        stu.SetTopicId(stuList[stuindex].GetAddress().GetTopicId());
-                                        stu.SetChangeNum(stuList[stuindex].GetAddress().GetChangeNum());
+                                        stu.SetClass(TeaList[index].GetAddress().GetClass());
+                                        stu.SetTopicId(StuList[StuIndex].GetAddress().GetTopicId());
+                                        stu.SetChangeNum(StuList[StuIndex].GetAddress().GetChangeNum());
                                         auto *temp = new ListNode<Student>;
-                                        int topicid = stuList[stuindex].GetAddress().GetTopicId();
-                                        if(topicid!=0){
-                                            for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                                if(topicList[i].GetAddress().GetId()==topicid){
-                                                    topicList[i].GetAddress().SetStuId(stu.GetId());
+                                        int TopicId = StuList[StuIndex].GetAddress().GetTopicId();
+                                        if(TopicId != 0){
+                                            for (int i = 1; i <= TopicList.GetSize(); ++i) {
+                                                if(TopicList[i].GetAddress().GetId() == TopicId){
+                                                    TopicList[i].GetAddress().SetStuId(stu.GetId());
                                                     break;
                                                 }
                                             }
                                         }
                                         temp->SetAddress(stu);
-                                        stuList.AddNode(temp, stuindex - 1);
-                                        stuList.DeleteNode(stuindex+1);
+                                        StuList.AddNode(temp, StuIndex - 1);
+                                        StuList.DeleteNode(StuIndex + 1);
                                         break;
                                     }
                                     case 4: {
-                                        stuList.display();
+                                        StuList.Display();
                                         break;
                                     }
                                     case 5: {
                                         std::cout << "请输入学生的默认密码 " << std::endl;
                                         std::string psw;std::cin >> psw;std::cout << std::endl;
-                                        for (int i = 1; i <= stuList.GetSize(); ++i) {
-                                            stuList[i].GetAddress().SetPassword(psw);
+                                        for (int i = 1; i <= StuList.GetSize(); ++i) {
+                                            StuList[i].GetAddress().SetPassword(psw);
                                         }
                                         std::cout << "设置成功！" << std::endl;
                                         break;
@@ -212,89 +212,89 @@ int main() {
                                     }
                                     default:;
                                 }
-                                if(!ex2) stu_opration_Teacher = menu::stu2topic_Teacher();
+                                if(!ex2) StuOperation_Teacher = menu::Stu2Topic_Teacher();
                             }
-                            savestudent(stuList,teachers[index].GetAddress().GetClass());
-                            saveTopic(topicList,teachers[index].GetAddress().GetClass());
+                            SaveStudent(StuList, TeaList[index].GetAddress().GetClass());
+                            SaveTopic(TopicList, TeaList[index].GetAddress().GetClass());
                             break;
                         }
                         case 2: {
-                            int topic_opration_Teacher = menu::menu2stu_Teacher();
+                            int TopicOperation_Teacher = menu::Topic2Stu_Teacher();
                             bool ex2 = false;
                             while(!ex2){
-                                switch (topic_opration_Teacher) {
+                                switch (TopicOperation_Teacher) {
                                     case 1: {
                                         Topic topic;
                                         std::cin >> topic;
                                         auto *temp = new ListNode<Topic>;
                                         temp->SetAddress(topic);
-                                        topicList.AddNode(temp);
+                                        TopicList.AddNode(temp);
                                         break;
                                     }
                                     case 2: {
-                                        int topicid;
+                                        int TopicId;
                                         std::cout << "请输入想删除题目编号" << std::endl;
-                                        std::cin >> topicid;
-                                        int topicindex = 0;
-                                        for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                            if(topicList[i].GetAddress().GetId()==topicid) {
-                                                topicid = i;
+                                        std::cin >> TopicId;
+                                        int TopicIndex = 0;
+                                        for (int i = 1; i <= TopicList.GetSize(); ++i) {
+                                            if(TopicList[i].GetAddress().GetId() == TopicId) {
+                                                TopicId = i;
                                                 break;
                                             }
                                         }
-                                        if(topicid==0) {
+                                        if(TopicId == 0) {
                                             std::cout << "账号不存在！" << std::endl;
                                             break;
                                         }
-                                        if(topicList[topicindex].GetAddress().GetStudentId()!="0"){
+                                        if(TopicList[TopicIndex].GetAddress().GetStudentId() != "0"){
                                             std::cout << "该题目已被学生选择，需要取消和学生之间的关联才能删除，请问是否取消关联？[y/n]" << std::endl;
                                             std::string answer;std::cin >> answer;
                                             if(answer=="n") break;
-                                            std::string stuid = topicList[topicindex].GetAddress().GetStudentId();
-                                            for (int i = 1; i <= stuList.GetSize(); ++i) {
-                                                if(stuList[i].GetAddress().GetId()==stuid) {
-                                                    stuList[i].GetAddress().SetTopicId(0);
+                                            std::string StuId = TopicList[TopicIndex].GetAddress().GetStudentId();
+                                            for (int i = 1; i <= StuList.GetSize(); ++i) {
+                                                if(StuList[i].GetAddress().GetId() == StuId) {
+                                                    StuList[i].GetAddress().SetTopicId(0);
                                                     break;
                                                 }
                                             }
                                         }
-                                        topicList.DeleteNode(topicindex);
+                                        TopicList.DeleteNode(TopicIndex);
                                         break;
                                     }
                                     case 3: {
-                                        int topicid;
+                                        int TopicId;
                                         std::cout << "请输入想修改题目编号 " << std::endl;
-                                        std::cin >> topicid;
-                                        int topicindex = 0;
-                                        for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                            if(topicList[i].GetAddress().GetId()==topicid){
-                                                topicindex = i;
+                                        std::cin >> TopicId;
+                                        int TopicIndex = 0;
+                                        for (int i = 1; i <= TopicList.GetSize(); ++i) {
+                                            if(TopicList[i].GetAddress().GetId() == TopicId){
+                                                TopicIndex = i;
                                                 break;
                                             }
                                         }
-                                        if(topicindex==0){
+                                        if(TopicIndex == 0){
                                             std::cout << "题目编号不存在！" << std::endl;
                                             break;
                                         }
                                         Topic topic;
                                         std::cin >> topic;
-                                        topic.SetStuId(topicList[topicindex].GetAddress().GetStudentId());
-                                        if(topicList[topicindex].GetAddress().GetStudentId()!="0"){
-                                            for (int i = 1; i <= stuList.GetSize(); ++i) {
-                                                if(stuList[i].GetAddress().GetId()==topicList[topicindex].GetAddress().GetStudentId()){
-                                                    stuList[i].GetAddress().SetTopicId(topic.GetId());
+                                        topic.SetStuId(TopicList[TopicIndex].GetAddress().GetStudentId());
+                                        if(TopicList[TopicIndex].GetAddress().GetStudentId() != "0"){
+                                            for (int i = 1; i <= StuList.GetSize(); ++i) {
+                                                if(StuList[i].GetAddress().GetId() == TopicList[TopicIndex].GetAddress().GetStudentId()){
+                                                    StuList[i].GetAddress().SetTopicId(topic.GetId());
                                                     break;
                                                 }
                                             }
                                         }
                                         auto *temp = new ListNode<Topic>;
                                         temp->SetAddress(topic);
-                                        topicList.DeleteNode(topicindex);
-                                        topicList.AddNode(temp, topicindex - 1);
+                                        TopicList.DeleteNode(TopicIndex);
+                                        TopicList.AddNode(temp, TopicIndex - 1);
                                         break;
                                     }
                                     case 4: {
-                                        topicList.display();
+                                        TopicList.Display();
                                         break;
                                     }
                                     case 5: {
@@ -306,37 +306,37 @@ int main() {
                                         std::cout << ">";
                                     }
                                 }
-                                if(!ex2) topic_opration_Teacher = menu::menu2stu_Teacher();
+                                if(!ex2) TopicOperation_Teacher = menu::Topic2Stu_Teacher();
                             }
-                            savestudent(stuList,teachers[index].GetAddress().GetClass());
-                            saveTopic(topicList,teachers[index].GetAddress().GetClass());
+                            SaveStudent(StuList, TeaList[index].GetAddress().GetClass());
+                            SaveTopic(TopicList, TeaList[index].GetAddress().GetClass());
                             break;
                         }
                         case 3:{
-                            int match_operation_Teacher = menu::match_Teacher();
+                            int match_operation_Teacher = menu::Match_Teacher();
                             bool ex2 = false;
                             while(!ex2){
                                 switch(match_operation_Teacher){
                                     case 1:{
                                         std::cout << "下面是您的全部学生: " << std::endl;
-                                        stuList.display();
+                                        StuList.Display();
                                         std::cout<< "下面是您的全部题目: " << std::endl;
-                                        topicList.display();
+                                        TopicList.Display();
                                         bool match_stu_topic = true;
                                         while(match_stu_topic){
                                             std::cout << "请输入您想分配学生的编号: " << std::endl;
-                                            std::string stuid;std::cin >> stuid;
+                                            std::string StuId;std::cin >> StuId;
                                             std::cout << "请输入您想分配的题目编号: " << std::endl;
-                                            int topicid;std::cin >> topicid;
-                                            for (int i = 0; i <= stuList.GetSize(); ++i) {
-                                                if(stuList[i].GetAddress().GetId()==stuid){
-                                                    stuList[i].GetAddress().SetTopicId(topicid);
+                                            int TopicId;std::cin >> TopicId;
+                                            for (int i = 0; i <= StuList.GetSize(); ++i) {
+                                                if(StuList[i].GetAddress().GetId() == StuId){
+                                                    StuList[i].GetAddress().SetTopicId(TopicId);
                                                     break;
                                                 }
                                             }
-                                            for (int i = 0; i <= topicList.GetSize(); ++i) {
-                                                if(topicList[i].GetAddress().GetId()==topicid){
-                                                    topicList[i].GetAddress().SetStuId(stuid);
+                                            for (int i = 0; i <= TopicList.GetSize(); ++i) {
+                                                if(TopicList[i].GetAddress().GetId() == TopicId){
+                                                    TopicList[i].GetAddress().SetStuId(StuId);
                                                     break;
                                                 }
                                             }
@@ -348,24 +348,24 @@ int main() {
                                     }
                                     case 2:{
                                         std::cout<< "下面是您的全部题目: " << std::endl;
-                                        topicList.display();
+                                        TopicList.Display();
                                         std::cout << "下面是您的全部学生: " << std::endl;
-                                        stuList.display();
+                                        StuList.Display();
                                         bool match_stu_topic = true;
                                         while(match_stu_topic){
                                             std::cout << "请输入您想分配的题目编号: " << std::endl;
-                                            int topicid;std::cin >> topicid;
+                                            int TopicId;std::cin >> TopicId;
                                             std::cout << "请输入您想分配学生的编号: " << std::endl;
-                                            std::string stuid;std::cin >> stuid;
-                                            for (int i = 0; i <= stuList.GetSize(); ++i) {
-                                                if(stuList[i].GetAddress().GetId()==stuid){
-                                                    stuList[i].GetAddress().SetTopicId(topicid);
+                                            std::string StuId;std::cin >> StuId;
+                                            for (int i = 0; i <= StuList.GetSize(); ++i) {
+                                                if(StuList[i].GetAddress().GetId() == StuId){
+                                                    StuList[i].GetAddress().SetTopicId(TopicId);
                                                     break;
                                                 }
                                             }
-                                            for (int i = 0; i <= topicList.GetSize(); ++i) {
-                                                if(topicList[i].GetAddress().GetId()==topicid){
-                                                    topicList[i].GetAddress().SetStuId(stuid);
+                                            for (int i = 0; i <= TopicList.GetSize(); ++i) {
+                                                if(TopicList[i].GetAddress().GetId() == TopicId){
+                                                    TopicList[i].GetAddress().SetStuId(StuId);
                                                     break;
                                                 }
                                             }
@@ -381,10 +381,10 @@ int main() {
                                     }
                                     default:;
                                 }
-                                if(!ex2) match_operation_Teacher = menu::match_Teacher();
+                                if(!ex2) match_operation_Teacher = menu::Match_Teacher();
                             }
-                            savestudent(stuList,teachers[index].GetAddress().GetClass());
-                            saveTopic(topicList,teachers[index].GetAddress().GetClass());
+                            SaveStudent(StuList, TeaList[index].GetAddress().GetClass());
+                            SaveTopic(TopicList, TeaList[index].GetAddress().GetClass());
                             break;
                         }
                         case 4:{
@@ -393,24 +393,24 @@ int main() {
                         }
                         default:;
                     }
-                    if(!ex1) operationtype = menu::displayteamenu();
+                    if(!ex1) OperationType = menu::DisplayTeaMenu();
                 }
                 break;
             }
             case 2:{
                 std::cout << "请输入你的班级编号: " << std::endl;
-                int classid;std::cin >> classid;
+                int ClassId;std::cin >> ClassId;
                 TList<Student> stuList;
-                loadstudent(stuList,classid);
+                LoadStudent(stuList, ClassId);
                 TList<Topic> topicList;
-                loadTopic(topicList,classid);
-                int index = menu::loginstudent(stuList);
+                LoadTopic(topicList, ClassId);
+                int index = menu::LoginStudent(stuList);
                 if(index == 0) break;
                 if (index != 0) std::cout << stuList[index].GetAddress().GetName() << "登陆成功！" << std::endl;
-                int operationtype = menu::displaystumenu();
+                int OperationType = menu::DisplayStuMenu();
                 bool ex1 = false;
                 while(!ex1){
-                    switch (operationtype){
+                    switch (OperationType){
                         case 1:{
                             int choice = stuList[index].GetAddress().GetChangeNum();
                             if(choice==0){
@@ -453,11 +453,11 @@ int main() {
                                         }
                                     }
                                 }
-                                std::cout << "请输入你要选择的题目编号 若都不想要 请输入-1"<< std::endl;int topicid;std::cin >> topicid;
-                                while(topicid!=-1&&(topicid!=ed[0]&&ed[0]!=0)&&(topicid!=ed[1]&&ed[1]!=0)&&(topicid!=ed[2]&&ed[2]!=0)){
-                                    std::cout << "输入错误 请重新输入";std::cin >> topicid;
+                                std::cout << "请输入你要选择的题目编号 若都不想要 请输入-1"<< std::endl;int TopicId;std::cin >> TopicId;
+                                while(TopicId != -1 && (TopicId != ed[0] && ed[0] != 0) && (TopicId != ed[1] && ed[1] != 0) && (TopicId != ed[2] && ed[2] != 0)){
+                                    std::cout << "输入错误 请重新输入";std::cin >> TopicId;
                                 }
-                                if(topicid==-1){
+                                if(TopicId == -1){
                                     break;
                                 }else{
                                     for (int i = 1; i <= topicList.GetSize(); ++i) {
@@ -466,9 +466,9 @@ int main() {
                                             break;
                                         }
                                     }
-                                    stuList[index].GetAddress().SetTopicId(topicid);
+                                    stuList[index].GetAddress().SetTopicId(TopicId);
                                     for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                        if(topicList[i].GetAddress().GetId()==topicid){
+                                        if(topicList[i].GetAddress().GetId() == TopicId){
                                             topicList[i].GetAddress().SetStuId(stuList[index].GetAddress().GetId());
                                             break;
                                         }
@@ -493,23 +493,23 @@ int main() {
                             break;
                         }
                         case 3:{
-                            int topicid = stuList[index].GetAddress().GetTopicId();int topicindex;
-                            if(topicid==0){
+                            int TopicId = stuList[index].GetAddress().GetTopicId();int TopicIndex;
+                            if(TopicId == 0){
                                 std::cout << "您还未选择题目" << std::endl;
                                 break;
                             }else{
                                 for (int i = 1; i <= topicList.GetSize(); ++i) {
-                                    if(topicList[i].GetAddress().GetId()==topicid){
-                                        topicindex=i;
+                                    if(topicList[i].GetAddress().GetId() == TopicId){
+                                        TopicIndex=i;
                                         break;
                                     }
                                 }
                             }
                             std::cout << "您的已选择题目为";
-                            std::cout << "编号: " << topicList[topicindex].GetAddress().GetId() << " 名称: " << topicList[topicindex].GetAddress().GetTitle() << std::endl;
-                            std::cout << "任务要求: " << topicList[topicindex].GetAddress().GetDescription() << std::endl;
+                            std::cout << "编号: " << topicList[TopicIndex].GetAddress().GetId() << " 名称: " << topicList[TopicIndex].GetAddress().GetTitle() << std::endl;
+                            std::cout << "任务要求: " << topicList[TopicIndex].GetAddress().GetDescription() << std::endl;
                             std::cout << "完成时间: ";
-                            topicList[topicindex].GetAddress().GetTime();
+                            topicList[TopicIndex].GetAddress().GetTime();
                             break;
                         }
                         case 4:{
@@ -518,9 +518,9 @@ int main() {
                         }
                         default:;
                     }
-                    if(!ex1) operationtype = menu::displaystumenu();
-                    savestudent(stuList,classid);
-                    saveTopic(topicList,classid);
+                    if(!ex1) OperationType = menu::DisplayStuMenu();
+                    SaveStudent(stuList, ClassId);
+                    SaveTopic(topicList, ClassId);
                 }
                 break;
             }
@@ -529,7 +529,7 @@ int main() {
             }
             default:;
             }
-        if(!ex0) usertype = menu::displaywelcome();
+        if(!ex0) usertype = menu::DisplayWelcome();
     }
-    file.change(teachers);
+    file.Change(TeaList);
 }

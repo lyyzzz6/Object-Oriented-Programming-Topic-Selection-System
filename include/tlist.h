@@ -30,7 +30,7 @@ public:
 
     ListNode<T>& operator[](int);
 
-    void display();
+    void Display();
 };
 
 template<typename T>
@@ -52,7 +52,7 @@ void TList<T>::AddNode(std::istream &in) {
 }
 
 template<typename T>
-void TList<T>::display() {
+void TList<T>::Display() {
     ListNode<T> *ptr = head->GetNext();
     while(ptr) {
         std::cout << *ptr;

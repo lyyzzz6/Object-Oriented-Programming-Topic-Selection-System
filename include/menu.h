@@ -11,21 +11,21 @@
 class menu{
 public:
 
-    static int displayteamenu();
+    static int DisplayTeaMenu();
 
-    static int displaystumenu();
+    static int DisplayStuMenu();
 
-    static int displaywelcome();
+    static int DisplayWelcome();
 
-    static int loginteacher(TList<Teacher> tea);
+    static int LoginTeacher(TList<Teacher> tea);
 
-    static int stu2topic_Teacher();
+    static int Stu2Topic_Teacher();
 
-    static int menu2stu_Teacher();
+    static int Topic2Stu_Teacher();
 
-    static int match_Teacher();
+    static int Match_Teacher();
 
-    static int loginstudent(TList<Student> list);
+    static int LoginStudent(TList<Student> list);
 };
 
 #endif //C__CLASSDESIGN_MENU_H

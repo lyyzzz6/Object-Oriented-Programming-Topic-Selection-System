@@ -7,36 +7,36 @@
 #include "../include/Teacher.h"
 
 Teacher::Teacher(std::string id, std::string password, int Class){
-    (*this).id = std::move(id);
-    (*this).password = std::move(password);
+    (*this).Id = std::move(id);
+    (*this).Password = std::move(password);
     (*this).Class = Class;
     registered = false;
-    defaultstupasswd = "";
+    DefaultStuPassword = "";
 }
 
 std::istream &operator>>(std::istream &in, Teacher &x) {
-    in >> x.id >> x.Class >> x.password >> x.defaultstupasswd >> x.registered;
+    in >> x.Id >> x.Class >> x.Password >> x.DefaultStuPassword >> x.registered;
     return in;
 }
 
 std::ostream &operator<<(std::ostream &out, Teacher &x) {
     if(typeid(out) == typeid(std::cout)) {
-        out << "id: " << x.id << "class: "<< x.Class;
+        out << "Id: " << x.Id << "class: " << x.Class;
     }else{
-        out << x.id <<" "<< x.Class << " " << x.password << " " << x.defaultstupasswd << " " << x.registered;
+        out << x.Id << " " << x.Class << " " << x.Password << " " << x.DefaultStuPassword << " " << x.registered;
     }
     return out;
 }
 
-std::string Teacher::Getid() {
-    return id;
+std::string Teacher::GetId() {
+    return Id;
 }
 
-std::string Teacher::Getpassword() {
-    return password;
+std::string Teacher::GetPassword() {
+    return Password;
 }
 
-int Teacher::GetClass() {
+int Teacher::GetClass() const {
     return Class;
 }
 

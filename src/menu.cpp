@@ -5,7 +5,7 @@
 #include "../include/menu.h"
 #include "../include/Teacher.h"
 
-int menu::displaywelcome() {
+int menu::DisplayWelcome() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "欢迎使用面向对象程序设计选题系统" << std::endl;
     std::cout << "请选择登录身份" << std::endl;
@@ -24,7 +24,7 @@ int menu::displaywelcome() {
 }
 
 
-int menu::loginteacher(TList<Teacher> tea) {
+int menu::LoginTeacher(TList<Teacher> tea) {
     std::cout << "请输入账号" << std::endl;
     std::string count;
     std::cin >> count;
@@ -35,14 +35,14 @@ int menu::loginteacher(TList<Teacher> tea) {
     int index;
     bool found = false;
     for (int i = 1; i <= size; ++i) {
-        if(tea[i].GetAddress().Getid()==count){
+        if(tea[i].GetAddress().GetId() == count){
             index = i;
             found = true;
             break;
         }
     }
     if(found){
-        if(tea[index].GetAddress().Getpassword()==psw){
+        if(tea[index].GetAddress().GetPassword() == psw){
             return index;
         }else{
             std::cout << "密码错误 请重新操作" << std::endl;
@@ -54,7 +54,7 @@ int menu::loginteacher(TList<Teacher> tea) {
     }
 }
 
-int menu::displayteamenu() {
+int menu::DisplayTeaMenu() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 关于学生操作" << std::endl;
@@ -71,7 +71,7 @@ int menu::displayteamenu() {
     }
 }
 
-int menu::stu2topic_Teacher() {
+int menu::Stu2Topic_Teacher() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 增加学生" << std::endl;
@@ -90,7 +90,7 @@ int menu::stu2topic_Teacher() {
     }
 }
 
-int menu::menu2stu_Teacher() {
+int menu::Topic2Stu_Teacher() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 增加题目" << std::endl;
@@ -108,7 +108,7 @@ int menu::menu2stu_Teacher() {
     }
 }
 
-int menu::match_Teacher() {
+int menu::Match_Teacher() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 为学生分配题目" << std::endl;
@@ -124,7 +124,7 @@ int menu::match_Teacher() {
     }
 }
 
-int menu::displaystumenu() {
+int menu::DisplayStuMenu() {
     std::cout << "--------------------------------" << std::endl;
     std::cout << "请选择您要执行的操作" << std::endl;
     std::cout << "1: 选择题目" << std::endl;
@@ -141,7 +141,7 @@ int menu::displaystumenu() {
     }
 }
 
-int menu::loginstudent(TList<Student> stu) {
+int menu::LoginStudent(TList<Student> stu) {
     std::cout << "请输入账号" << std::endl;
     std::string count;
     std::cin >> count;

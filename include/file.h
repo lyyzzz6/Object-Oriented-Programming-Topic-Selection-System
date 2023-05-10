@@ -18,10 +18,10 @@ public:
     File(std::string, std::string, std::string);
 
     template<typename T>
-    void init(TList<T>& list);
+    void Init(TList<T>& list);
 
     template<typename T>
-    void change(TList<T>& list);
+    void Change(TList<T>& list);
 };
 
 File::File(const std::string p, const std::string c, const std::string t) {
@@ -31,7 +31,7 @@ File::File(const std::string p, const std::string c, const std::string t) {
 }
 
 template<typename T>
-void File::change(TList<T> &list) {
+void File::Change(TList<T> &list) {
     std::ofstream out;
     out.open(path + classes + ".temp", std::ios::app);
     if(!out.is_open()) {
@@ -53,7 +53,7 @@ void File::change(TList<T> &list) {
 }
 
 template<typename T>
-void File::init(TList<T>& list) {
+void File::Init(TList<T>& list) {
     std::ifstream in;
     in.open(path + classes + filetype, std::ios::in);
     if(!in.is_open()) {

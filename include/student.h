@@ -10,9 +10,9 @@
 
 class Student {
 private:
-    std::string name;
-    std::string id;
-    std::string password;
+    std::string Name;
+    std::string Id;
+    std::string Password;
     int Class;
     int ChosenTopicId; //已选中的题目id 未选中为0
     int ChangeNum; //可供抽取选题的次数

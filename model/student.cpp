@@ -7,9 +7,9 @@
 #include <utility>
 
 Student::Student (std::string name,std::string id,std::string password ,int Class) {
-    (*this).name = std::move(name);
-    (*this).id = std::move(id);
-    (*this).password = std::move(password);
+    (*this).Name = std::move(name);
+    (*this).Id = std::move(id);
+    (*this).Password = std::move(password);
     (*this).Class = Class;
     ChosenTopicId = 0;
     ChangeNum = 3;
@@ -18,19 +18,19 @@ Student::Student (std::string name,std::string id,std::string password ,int Clas
 Student::Student() = default;
 
 std::string Student::GetId() const{
-    return id;
+    return Id;
 }
 
 std::string Student::GetName () const{
-    return name;
+    return Name;
 }
 
 std::string Student::GetPassword () const{
-    return password;
+    return Password;
 }
 
 void Student::SetPassword(const std::string& psw) {
-    (*this).password = psw;
+    (*this).Password = psw;
 }
 
 void Student::ChangeChosenTopicId(int TopicId) {
@@ -43,35 +43,35 @@ void Student::DeclineChangeNum() {
 
 std::ostream &operator<<(std::ostream &out, Student& x) {
     if(typeid(out) == typeid(std::cout)) {
-        out << "账号: " << x.id << " ";
-        out << "姓名: " << x.name << " ";
-        out << "密码: " << x.password << " ";
+        out << "账号: " << x.Id << " ";
+        out << "姓名: " << x.Name << " ";
+        out << "密码: " << x.Password << " ";
         out << "选择题目编号: " << x.ChosenTopicId << " ";
         out << "可刷新次数: " << x.ChangeNum << std::endl;
     }else{
-        out << " " << x.Class << " " << x.name << " " << x.id << " " << x.password;
+        out << " " << x.Class << " " << x.Name << " " << x.Id << " " << x.Password;
         out << " " << x.ChosenTopicId << " " << x.ChangeNum;
     }
     return out;
 }
 
 void Student::SetId(std::string i) {
-    (*this).id = std::move(i);
+    (*this).Id = std::move(i);
 }
 
 void Student::SetName(std::string n) {
-    (*this).name = std::move(n);
+    (*this).Name = std::move(n);
 }
 
 std::istream &operator>>(std::istream &in, Student &x) {
     if(typeid(in) == typeid(std::cin)){
-        std::cout << "请输入学生账号";std::cin >> x.id;
-        std::cout << "请输入学生姓名";std::cin >> x.name;
-        std::cout << "请输入学生密码";std::cin >> x.password;
+        std::cout << "请输入学生账号";std::cin >> x.Id;
+        std::cout << "请输入学生姓名";std::cin >> x.Name;
+        std::cout << "请输入学生密码";std::cin >> x.Password;
         x.ChosenTopicId = 0;
         x.ChangeNum = 3;
     }else{
-        in >> x.Class >> x.name >> x.id >> x.password;
+        in >> x.Class >> x.Name >> x.Id >> x.Password;
         in >> x.ChosenTopicId >> x.ChangeNum;
     }
     return in;

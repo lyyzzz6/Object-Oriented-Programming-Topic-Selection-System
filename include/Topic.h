@@ -8,15 +8,15 @@
 class Topic{
 private:
     int Class;
-    int id;
-    std::string title;
-    std::string description;
-    std::string studentid;
-    int year;
-    int month;
-    int day;
-    int hour;
-    int minute;
+    int Id;
+    std::string Title;
+    std::string Description;
+    std::string StudentId;
+    int Year;
+    int Month;
+    int Day;
+    int Hour;
+    int Minute;
 public:
     Topic();
 

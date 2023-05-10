@@ -10,68 +10,68 @@
 Topic::Topic() = default;
 
 std::string Topic::GetTitle() const {
-    return title;
+    return Title;
 }
 
 int Topic::GetId() const {
-    return id;
+    return Id;
 }
 
 void Topic::SetId(int i) {
-    (*this).id = i;
+    (*this).Id = i;
 }
 
 void Topic::SetTitle(std::string t) {
-    title = std::move(t);
+    Title = std::move(t);
 }
 
 void Topic::SetTime(int y, int m, int d, int h, int min) {
-    year = y;
-    month = m;
-    day = d;
-    hour = h;
-    minute = min;
+    Year = y;
+    Month = m;
+    Day = d;
+    Hour = h;
+    Minute = min;
 }
 
 std::istream &operator>>(std::istream &in, Topic &x) {
     if(typeid(in) == typeid(std::cin)){
-        std::cout << "请输入题目编号 ";std::cin >> x.id;
-        std::cout << "请输入题目标题 ";std::cin >> x.title;
-        std::cout << "请输入题目描述（请以逗号句号为中断，结束请按回车）";std::cin >> x.description;
+        std::cout << "请输入题目编号 ";std::cin >> x.Id;
+        std::cout << "请输入题目标题 ";std::cin >> x.Title;
+        std::cout << "请输入题目描述（请以逗号句号为中断，结束请按回车）";std::cin >> x.Description;
         std::cout << "请输入题目完成时间（以y m d h m为格式，空格分开不同数据）";
-        std::cin >> x.year >> x.month >> x.day >> x.hour >> x.minute;
-        x.studentid = "0";
+        std::cin >> x.Year >> x.Month >> x.Day >> x.Hour >> x.Minute;
+        x.StudentId = "0";
     }else{
-        in >> x.Class >> x.id >> x.title >> x.description >> x.studentid;
-        in >> x.year >> x.month >> x.day >> x.hour >> x.minute;
+        in >> x.Class >> x.Id >> x.Title >> x.Description >> x.StudentId;
+        in >> x.Year >> x.Month >> x.Day >> x.Hour >> x.Minute;
     }
     return in;
 }
 
 std::ostream &operator<<(std::ostream& out, Topic &x) {
     if(typeid(out)==typeid(std::cout)) {
-        out << "编号: " << x.id << " 名称: " << x.title << std::endl;
-        out << "任务要求: " << x.description << std::endl;
-        out << "被选择学生编号: " << x.studentid << std::endl;
-        out << "完成时间: " << x.year << ":" << x.month << ":" << x.day << " " << x.hour << ":" << x.minute << std::endl;
+        out << "编号: " << x.Id << " 名称: " << x.Title << std::endl;
+        out << "任务要求: " << x.Description << std::endl;
+        out << "被选择学生编号: " << x.StudentId << std::endl;
+        out << "完成时间: " << x.Year << ":" << x.Month << ":" << x.Day << " " << x.Hour << ":" << x.Minute << std::endl;
     }else{
-        out << x.Class << " " << x.id << " " << x.title << " " << x.description << " " << x.studentid << " ";
-        out << x.year << " " << x.month << " " << x.day << " " << x.hour << " " << x.minute;
+        out << x.Class << " " << x.Id << " " << x.Title << " " << x.Description << " " << x.StudentId << " ";
+        out << x.Year << " " << x.Month << " " << x.Day << " " << x.Hour << " " << x.Minute;
     }
 }
 
 void Topic::SetStuId(std::string s) {
-    studentid = s;
+    StudentId = s;
 }
 
 std::string Topic::GetStudentId() {
-    return studentid;
+    return StudentId;
 }
 
 std::string Topic::GetDescription() {
-    return description;
+    return Description;
 }
 
 void Topic::GetTime() const{
-    std::cout << year << ":" << month << ":" << day << " " << hour << ":" << minute << std::endl;
+    std::cout << Year << ":" << Month << ":" << Day << " " << Hour << ":" << Minute << std::endl;
 }
