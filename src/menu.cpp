@@ -3,7 +3,6 @@
 //
 #include <iostream>
 #include "../include/menu.h"
-#include "../include/Teacher.h"
 #include "../include/admin.h"
 
 int menu::DisplayWelcome() {

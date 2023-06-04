@@ -142,5 +142,4 @@ CMakeFiles/C__classDesign.dir/src/menu.cpp.obj: \
  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Topic.h \
  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/student.h \
  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/listnode.h \
- D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/Teacher.h \
  D:/C++classDesign/Object-Oriented-Programming-Topic-Selection-System/include/admin.h

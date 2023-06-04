@@ -96,11 +96,3 @@ int Student::GetTopicId() const {
 void Student::SetChangeNum(int i) {
     (*this).ChangeNum = i;
 }
-
-
-
-
-
-
-
-

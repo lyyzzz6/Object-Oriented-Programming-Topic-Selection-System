@@ -41,7 +41,7 @@ void LoadStudent(TList<Student>&stu, int c){
 }
 
 void SaveStudent(TList<Student>&stu, int c){
-    File file("../data/student",std::to_string(c),".txt");\
+    File file("../data/student",std::to_string(c),".txt");
     file.Change(stu);
 }
 
@@ -121,7 +121,7 @@ int main() {
             case 1: {
                 int index = menu::LoginTeacher(TeaList);
                 if(index == 0) break;
-                if (index != 0) std::cout << "登陆成功！" << std::endl;
+                if(index != 0) std::cout << "登陆成功！" << std::endl;
                 TList<Student> StuList;
                 LoadStudent(StuList, TeaList[index].GetAddress().GetClass());
                 TList<Topic> TopicList;

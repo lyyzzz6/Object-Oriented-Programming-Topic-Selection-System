@@ -68,5 +68,4 @@ void File::Init(TList<T>& list) {
     in.close();
 }
 
-
 #endif //C__CLASSDESIGN_FILE_H

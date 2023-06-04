@@ -46,9 +46,9 @@ public:
 
     void SetTopicId(int i);
 
-    int GetChangeNum() const;
+    [[nodiscard]] int GetChangeNum() const;
 
-    int GetTopicId() const;
+    [[nodiscard]] int GetTopicId() const;
 
     void SetChangeNum(int i);
 };
